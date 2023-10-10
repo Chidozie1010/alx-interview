@@ -1,18 +1,43 @@
 #!/usr/bin/python3
+"""This Script solves the pascal principle"""
 
-def pascal_triangle(n):
-    """Create a function def pascal_triangle(n): that returns a list of lists
-    of integers representing the Pascal’s triangle of n
-    """
-    if n <= 0:
-        return []
-    triangle = [[1]]
-    for i in range(1, n):
-        prev_row = triangle[-1]
-        row = [1]
-        for j in range(1, i):
-            row.append(prev_row[j-1] + prev_row[j])
-        row.append(1)
-        triangle.append(row)
-    return triangle
 
+def factorial(num):
+    """ Factorial Function """
+    if (num == 1) or (num == 0):
+        return 1
+    return (num * factorial(num-1))  # multiplication
+
+
+def pascal_triangle(n):  # n = number
+    """ Pascal function """
+    triangle = []  # empty list
+    if (n <= 0):  # conditional statement for number less than 1
+        return triangle
+    for x in range(0, n):  # iterate through 0 to (number-1) x is row number
+        temp = []  # temporary empty list
+        for y in range(0, x+1):  # iterate through 0 to(x+1) y is column number
+            # print(x,y)
+            temp.append(Combination(x, y))  # called the combination function
+        triangle.append(temp)
+
+    return (triangle)
+
+
+def Combination(x, y):
+    """ Combination FUnction """
+    # print("I am base fact",factorial(y) * factorial(x-y))
+    return int(factorial(x)/(factorial(y)*factorial(x-y)))
+
+#   0 1 2 3
+# 0# 1
+# 1# 1 1
+# 2# 1 2 1
+# 3# 1 3 3 1
+
+# Combination = nCr n!/r!*(n-r)!
+# n = no of current row
+# r = no of current column
+# 0C0 = 2!/1!*(2-1)! = 2/1
+
+# Factorial = n(n-1)!
